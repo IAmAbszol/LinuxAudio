@@ -32,10 +32,14 @@ public class SystemAudio {
     }
     
     public void stop() {
-    	if(loop) loop = false;
-    	if(sourceLine != null) {
-    		sourceLine.drain();
-    		sourceLine.close();
+    	try {
+	    	if(sourceLine != null) {
+	    		sourceLine.stop();
+	    		sourceLine.close();
+	    	}
+	    	if(loop) loop = false;
+    	} catch (Exception e) {
+    		e.printStackTrace();
     	}
     }
 
